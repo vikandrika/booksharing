@@ -49,7 +49,7 @@ _users = {
 
     'jack': {
         'name': 'Jack Potter',
-        'fav_categories': 'Фантастика',
+        'fav_categories': ['Фантастика', 'Поэзия'],
         'own_books': 'book870839'
     },
 
@@ -74,8 +74,9 @@ for login, user_data in _users.items():
 def get_users_by_name(q):
     results = []
     # SEARCH
-
-
+    for user in _user_list:
+        if q.lower() in user['name'].lower():
+            results.append(user)
     return results
 
 

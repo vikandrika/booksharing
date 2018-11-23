@@ -14,7 +14,7 @@ def hello_world():
 def search_for_person():
     q = request.args.get('query')
     users = db.get_users_by_name(q)
-    return render_template('page2.html', q=q, users=users)
+    return render_template('search_results.html', q=q, users=users)
 
 app.run()
 

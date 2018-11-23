@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title> Search: {{q}} </title>
+</head>
+<body>
+     <div class="container">
+        <h1> <span class="badge badge-secondary"> You searched for   </span>{{q}} </h1>
+        <br>
+        {% for user in users %}
+            <div class="card">
+              <div class="card-body">
+                  <a href="/users/{{user.login}}">  {{user.name}} </a>
+                  <p> Любимые категории: {{user.fav_categories}} </p>
+                  <p> Книги: {{user.own_books}} </p>
+                  {% else %}
+                    <div class="alert alert-warning">User not found!</div>
+              </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</body>
+</html>
