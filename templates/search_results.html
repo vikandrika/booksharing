@@ -15,10 +15,10 @@
                   <a href="/users/{{user.login}}">  {{user.name}} </a>
                   <p> Любимые категории: {{user.fav_categories}} </p>
                   <p> Книги: {{user.own_books}} </p>
-                  {% else %}
-                    <div class="alert alert-warning">User not found!</div>
               </div>
             </div>
+        {% else %}
+            <div class="alert alert-warning">Книга не найдена!</div>
         {% endfor %}
 
     </div>
