@@ -82,69 +82,22 @@ conn.commit()
 
 users = {
     'paul': {
-        'name': 'Pavel Okopnyi',
+        'userID': 15456534
+        'login': 'Pavel_Okopnyi',
+        'password': 'fdfdfdgdfg',
+        'email': 'dfsdgfsfg',
         'f_genres': 'Ужасы',
-        'owned_books': 'book184637'
-    },
-
-    'igor': {
-        'name': 'Igor Novikov',
-        'f_genres': 'Научная фантастика',
-        'owned_books': 'book407836'
-    },
-
-    'boris': {
-        'name': 'Boris Ivanov',
-        'f_genres': 'Триллер',
-        'owned_books': 'book846339'
-    },
-
-    'alena': {
-        'name': 'Alena Popova',
-        'f_genres': 'Научная литература',
-        'owned_books': 'book899111',
-    },
-
-    'tom': {
-        'name': 'Tom Riddle',
-        'f_genres': 'Драма',
-        'owned_books': 'book189007'
-    },
-
-    ' alex': {
-        'name': 'Alex Smith',
-        'f_genres': 'Биография',
-        'owned_books': 'book503255'
-    },
-
-    'ivan': {
-        'name': 'Ivan Borisov',
-        'f_genres': 'Детектив',
-        'owned_books': 'book846009'
-    },
-
-    'anna': {
-        'name': 'Anna Karenina',
-        'f_genres': 'Драма',
-        'owned_books': 'book9346613'
-    },
-
-    'jack': {
-        'name': 'Jack Potter',
-        'f_genres': ['Фантастика', 'Поэзия'],
-        'owned_books': 'book870839'
-    },
-
-    'alexander': {
-        'name': 'Alexander Petrov',
-        'f_genres': 'Любовный роман',
-        'owned_books': 'book992303',
-    }
+        'f_authors': 'Ghj',
+        'wish_books': 'sdfgdsfgsd',
+        'owned_books': 'book184637',
+        'time_for_registration': 43456747,
+        'number_of_exchanges': 645234324,
+        'rating': 5
 }
 
 for user in users:
     c.execute("INSERT INTO users "
-              "(name, f_genres, owned_books) "
+              "(userID, login, password, email, f_genres, f_authors, wish_books, owned_books) "
               "VALUES "
               "('{login}','{f_genres}' ,'{owned_books}', 0)".format(**user))
 

@@ -18,19 +18,16 @@ def hello_world():
     # Close connection
     conn.close()
     # Return resulting HTML
-    return render_template('page01.html', users=users)
+    return render_template('page1.html', users=users)
 
 
-@app.route('/')
-def hello_world():
-    return render_template('page1.html')
 
 @app.route('/search')
 def search_for_person():
     conn = sqlite3.connect('app.db')
     c = conn.cursor()
     q = request.args.get('query')
-    c.execute("SELECT * FROM users where login LIKE '{q}'".format(q=q))
+    c.execute("SELECT * FROM users where name LIKE '{q}'".format(q=q))
     users = list(c.fetchall())
     return render_template('search_results.html', q=q, users=users)
 
