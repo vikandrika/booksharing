@@ -4,7 +4,7 @@ conn = sqlite3.connect('app.db')
 
 c = conn.cursor()
 
-c.execute ('''
+c.execute('''
 CREATE TABLE users (
            userID INTEGER PRIMARY KEY AUTOINCREMENT,
            password TEXT,
@@ -14,7 +14,7 @@ CREATE TABLE users (
            f_authors TEXT,
            wish_books TEXT,
            owned_books TEXT,
-           time_from_reg INTEGER,
+           time_from_registration INTEGER,
            number_of_exchanges INTEGER,
            rating REAL
 )
@@ -27,7 +27,15 @@ c.execute('''
 ''')
 conn.commit()
 
-c.execute ('''
+c.execute('''
+    ALTER TABLE users
+    ADD COLUMN full_name TEXT
+''')
+conn.commit()
+
+
+
+c.execute('''
 CREATE TABLE books (
            bookID INTEGER PRIMARY KEY AUTOINCREMENT,
            book_status TEXT,
@@ -43,8 +51,8 @@ conn.commit()
 c.execute ('''
 CREATE TABLE exchange (
           exchangeID INTEGER PRIMARY KEY AUTOINCREMENT,
-          user1 INTEGER,
-          user2 INTEGER,
+          user1 TEXT,
+          user2 TEXT,
           bookU1 INTEGER,
           bookU2 INTEGER,
           date INTEGER,
@@ -81,27 +89,30 @@ CREATE TABLE users_genres (
 conn.commit()
 
 users = {
-    'paul': {
-        'userID': 15456534
-        'login': 'Pavel_Okopnyi',
+     "paul": {
+        'userID': 15456534,
+        'login': 'paul',
+        'full_name': 'Pavel_Okopnyi',
         'password': 'fdfdfdgdfg',
         'email': 'dfsdgfsfg',
         'f_genres': 'Ужасы',
         'f_authors': 'Ghj',
         'wish_books': 'sdfgdsfgsd',
         'owned_books': 'book184637',
-        'time_for_registration': 43456747,
+        'time_from_registration': 43456747,
         'number_of_exchanges': 645234324,
         'rating': 5
+    }
 }
 
 for user in users:
     c.execute("INSERT INTO users "
-              "(userID, login, password, email, f_genres, f_authors, wish_books, owned_books) "
+              "(userID, login, full_name, email, f_genres, f_authors, wish_books, owned_books, time_from_registration, number_of_exchanges, rating) "
               "VALUES "
-              "('{login}','{f_genres}' ,'{owned_books}', 0)".format(**user))
+              "('{login}', '{full_name}', '{email}','{f_genres}','{f_authors}','{wish_books}','{owned_books}','{time_from_registration}','{number_of_exchange}','{rating}')".format(**user))
 
     conn.commit()
 
 
 conn.close()
+
