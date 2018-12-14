@@ -7,18 +7,18 @@
 </head>
 <body>
      <div class="container">
-        <h1> <span class="badge badge-secondary"> You searched for   </span>{{q}} </h1>
+        <h1> <span class="badge badge-secondary"> You searched for   </span> {{q}} </h1>
         <br>
         {% for user in users %}
             <div class="card">
               <div class="card-body">
-                  <a href="/users/{{user.login}}">  {{user.name}} </a>
-                  <p> Любимые категории: {{user.fav_categories}} </p>
-                  <p> Книги: {{user.own_books}} </p>
+                  <p> Пользователь: {{user.full_name}} </p>
+                  <p> Любимые категории: {{user.f_genres}} </p>
+                  <p> Авторы: {{user.f_authors}} </p>
               </div>
             </div>
         {% else %}
-            <div class="alert alert-warning">Книга не найдена!</div>
+            <div class="alert alert-warning">Пользователь не найден!</div>
         {% endfor %}
 
     </div>

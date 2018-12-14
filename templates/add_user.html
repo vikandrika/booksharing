@@ -17,11 +17,9 @@
         <form method="post" action="/add_user">
             <div class="form-group">
 
-                <label>Логин</label>
-                <input class="form-control" type="text" name="login" required>
 
                 <label>Фамилия и Имя</label>
-                <input class="form-control" type="text" name="name" required>
+                <input class="form-control" type="text" name="full_name" required>
 
                 <label>Email</label>
                 <input class="form-control" type="email" name="email" required>
@@ -32,8 +30,6 @@
                 <label>Любимые писатели (указывать через ;)</label>
                 <input class="form-control" type="text" name="f_authors">
 
-                <label>Фото</label>
-                <input class="form-control" type="url" name="photo">
 
             </div>
             <button type="submit" class="btn btn-success">Add User</button>

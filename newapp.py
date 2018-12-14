@@ -29,15 +29,18 @@ def hello_world():
     # Return resulting HTML
     return render_template('page1.html', users=users)
 
-@app.route('/user/<login>/')
-def user_page(login):
+@app.route('/user/<email>/')
+def user_page(email):
     conn = sqlite3.connect('app.db')
     conn.row_factory = dict_factory
     c = conn.cursor()
 
     # Handler logic here
-    c.execute("SELECT * FROM users WHERE login='%s'" % login)
+    c.execute("SELECT * FROM users WHERE email='%s'" % email)
     user_data = c.fetchone()
+
+    #c.execute("SELECT * FROM exchange WHERE user2='%s'" % user2)
+    #user_data = c.fetchone()
 
     # Close connection
     conn.close()
@@ -46,11 +49,17 @@ def user_page(login):
 
 @app.route('/search')
 def search_for_person():
-    conn = sqlite3.connect('app.db')
-    c = conn.cursor()
     q = request.args.get('query')
-    c.execute("SELECT * FROM users where name LIKE '{q}'".format(q=q))
+
+    conn = sqlite3.connect('app.db')
+    conn.row_factory = dict_factory
+    c = conn.cursor()
+
+    c.execute("SELECT * FROM users WHERE full_name LIKE '%{q}%' OR email LIKE '%{q}%'"
+              "".format(q=q))
     users = list(c.fetchall())
+
+    conn.close()
     return render_template('search_results.html', q=q, users=users)
 
 
@@ -65,12 +74,10 @@ def add_user():
     if request.method == 'POST':
         # add new user data
         user = {}
-        user['login'] = request.form.get('login')
         user['full_name'] = request.form.get('full_name')
         user['email'] = request.form.get('email')
         user['f_genres'] = request.form.get('f_genres')
         user['f_authors'] = request.form.get('f_authors')
-        user['photo'] = request.form.get('photo')
 
         # save to database
         conn = sqlite3.connect('app.db')
@@ -80,21 +87,21 @@ def add_user():
             error_message = "user_exists"
         else:
             c.execute("INSERT INTO users "
-                      "(login, full_name, email, f_genres, f_authors, photo) "
+                      "(full_name, email, f_genres, f_authors) "
                       "VALUES "
-                      "('{login}','{full_name}', '{email}', '{f_genres}','{f_authors}','{photo}')"
+                      "('{full_name}', '{email}', '{f_genres}','{f_authors}')"
                       "".format(**user))
             conn.commit()
             user_created = True
         conn.close()
-        # redirect to user page
-        #return redirect('/user/%s/' % user['email'])
+        return redirect('/user/%s/' % user['email'])
 
 
     return render_template(
         "add_user.html",
         user_created=user_created,
         error_message=error_message
+
     )
 
 
