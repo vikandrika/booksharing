@@ -9,21 +9,86 @@
     {% if not user %}
         <div class="alert alert-warning">User not found!</div>
     {% else %}
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <img src="{%if user.photo %}
-                {{user.photo}}
-                {% else %}
-                https://image.freepik.com/free-icon/male-user-shadow_318-34042.jpg
-                {%endif%}" class="img-thumbnail">
-            </div>
-            <div class="col-sm">
-                <h1>{{user.full_name}}</h1>
-                <p>Genres {{user.f_genres}} </p>
-            </div>
+
+         <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+  <h4 class="my-0 mr-md-auto font-weight-normal">Book Sharing</h4>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" href="#">О проекте</a>
+    <a class="p-2 text-dark" href="#">Служба поддержки</a>
+    <a class="p-2 text-dark" href="/">Поиск книг</a>
+  </nav>
+  <a class="btn btn-outline-primary" href="/singin">Sign out</a>
         </div>
-    </div>
+            <div class="container main-section">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 image-section ">
+                        <img src="https://www.yourerc.com/img/employment-law.jpg"   width="100%">
+                    </div>
+                    <div class="row user-left-part">
+                        <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
+                            <div class="row ">
+                                <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
+                                    <img src="http://nicesnippets.com/demo/1499344631_malecostume.png">
+                                </div>
+
+                                <div class="row user-detail-row">
+                                    <div class="col-md-12 col-sm-12 user-detail-section2 pull-left">
+                                    <div class="border"></div>
+                                        <p>ЛЮБИМЫЙ ПИСАТЕЛЬ</p>
+                                        <h3> {{user.f_authors}} </h3>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 user-detail-section2 pull-right">
+                                        <div class="border"></div>
+                                        <p>ЛЮБИМЫЕ ЖАНРЫ</p>
+                                        <h4>{{user.f_genres}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
+                            <div class="row profile-right-section-row">
+                                <div class="col-md-12 profile-header">
+                                    <div class="row">
+                                        <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
+                                            <h1>{{user.full_name}}</h1>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-left">
+                                            <button class="btn btn-info req-btn pull-left"> ОБМЕН КНИГАМИ</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-8  profile-tag-section text-center">
+                                            <div class="row">
+                                                <div class="col-md-3 col-sm-3 profile-tag">
+                                                    <a class="p-2 text-dark" href="#">Инфо</a>
+                                                </div>
+                                                <div class="col-md-3 col-sm-3 profile-tag">
+                                                    <a class="p-2 text-dark" href="#">Добавить книгу</a>
+                                                </div>
+                                                <div class="col-md-3 col-sm-3 profile-tag">
+                                                 <a class="p-2 text-dark" href="#">Рейтинг</a>
+                                                </div>
+
+                                            </div>
+                                            <img  width="100%" src="https://i1.wampi.ru/2018/12/18/image505.jpg" class="img-fluid col-md-9 col-sm-4 col-xs-10 pull-right" alt="Responsive image">
+                                            <div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2018-2019 Read Good, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+</footer>
     {% endif %}
 </body>
 </html>

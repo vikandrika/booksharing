@@ -105,6 +105,10 @@ def add_user():
     )
 
 
+@app.route('/singin')
+def singin():
+    return render_template('sing_in.html')
+
 
 app.run()
 
