@@ -96,11 +96,32 @@ users = [
     }
 ]
 
+books = [
+      {
+        'book_title': 'Zero',
+        'book_author': 'None',
+        'book_genres': 'Roman',
+        'book_status': 'New'
+    }
+]
+
+
+
+
 for user in users:
     c.execute("INSERT INTO users "
-              "(full_name, email, f_genres, f_authors, wish_books, owned_books, time_from_registration, number_of_exchanges, rating) "
+              "(full_name, email, password f_genres, f_authors, wish_books, owned_books, time_from_registration, number_of_exchanges, rating) "
               "VALUES "
-              "('{full_name}', '{email}','{f_genres}','{f_authors}','{wish_books}','{owned_books}','{time_from_registration}','{number_of_exchanges}','{rating}')".format(**user))
+              "('{full_name}', '{email}', '{password}','{f_genres}','{f_authors}','{wish_books}','{owned_books}','{time_from_registration}','{number_of_exchanges}','{rating}')".format(**user))
+
+    conn.commit()
+
+
+for user in books:
+    c.execute("INSERT INTO books "
+              "(book_title, book_author, book_genres, book_status) "
+              "VALUES "
+              "('{book_title}', '{book_author}', '{book_genres}','{book_status}')".format(**user))
 
     conn.commit()
 

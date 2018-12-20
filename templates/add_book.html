@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Add new book</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Добавить книгу</h1>
+
+        <form method="post" action="/add_book">
+            <div class="form-group">
+
+
+                <label>Название книги</label>
+                <input class="form-control" type="text" name="book_title" required>
+
+                <label>Автор книги</label>
+                <input class="form-control" type="text" name="book_author" required>
+
+                <label>Жанр книги</label>
+                <input class="form-control" type="text" name="book_genres" required>
+
+                <label>Состояние книги(Хорошее,среднее,плохое)</label>
+                <input class="form-control" type="text" name="">
+
+
+            </div>
+            <button type="submit" class="btn btn-success">Add Book</button>
+        </form>
+    </div>
+</body>
+</html>

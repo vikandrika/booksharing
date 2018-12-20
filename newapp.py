@@ -76,20 +76,22 @@ def add_user():
         user = {}
         user['full_name'] = request.form.get('full_name')
         user['email'] = request.form.get('email')
+        user['password'] = request.form.get('password')
         user['f_genres'] = request.form.get('f_genres')
         user['f_authors'] = request.form.get('f_authors')
 
         # save to database
         conn = sqlite3.connect('app.db')
         c = conn.cursor()
+
         c.execute("SELECT * FROM users where email='%s'" % user['email'])
         if c.fetchone():
             error_message = "user_exists"
         else:
             c.execute("INSERT INTO users "
-                      "(full_name, email, f_genres, f_authors) "
+                      "(full_name, email, password, f_genres, f_authors) "
                       "VALUES "
-                      "('{full_name}', '{email}', '{f_genres}','{f_authors}')"
+                      "('{full_name}', '{email}', '{password}', '{f_genres}','{f_authors}')"
                       "".format(**user))
             conn.commit()
             user_created = True
@@ -108,6 +110,73 @@ def add_user():
 @app.route('/singin')
 def singin():
     return render_template('sing_in.html')
+
+
+@app.route('/sing_in', methods=['GET','POST'])
+def sing_in():
+
+    if request.method == 'GET':
+
+        user ={}
+        user['email'] = request.form.get('email')
+        user['password'] = request.form.get('password')
+
+        conn = sqlite3.connect('app.db')
+        c = conn.cursor()
+        conn.row_factory = dict_factory
+
+        c.execute("SELECT * FROM users where email='%s'" % user['email'])
+
+        if c.fetchone():
+            return redirect('/user/%s/' % user['email'])
+        conn.commit()
+        conn.close()
+
+
+
+@app.route('/add_book', methods=['GET', 'POST'])
+def add_book():
+
+    book_created = False
+    error_message = ""
+
+    if request.method == 'POST':
+        # add new user data
+        user = {}
+        user['book_title'] = request.form.get('book_title')
+        user['book_author'] = request.form.get('book_author')
+        user['book_genres'] = request.form.get('book_genres')
+        user['book_status'] = request.form.get('book_status')
+
+        # save to database
+        conn = sqlite3.connect('app.db')
+        c = conn.cursor()
+
+        c.execute("SELECT * FROM books where book_title='%s'" % user['book_title'])
+        if c.fetchone():
+            error_message = "book_exists"
+        else:
+            c.execute("INSERT INTO users "
+                      "(full_name, email, password, f_genres, f_authors) "
+                      "VALUES "
+                      "('{full_name}', '{email}', '{password}', '{f_genres}','{f_authors}')"
+                      "".format(**user))
+            conn.commit()
+            user_created = True
+        conn.close()
+        return redirect('/user/%s/' % user['email'])
+
+
+    return render_template(
+        "add_user.html",
+        user_created=user_created,
+        error_message=error_message
+
+    )
+
+
+
+
 
 
 app.run()

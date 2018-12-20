@@ -6,11 +6,6 @@
     <title>Add new user</title>
 </head>
 <body>
-    {% if user_created %}
-        <div class="alert alert-success">User Created</div>
-    {% elif error_message=="user_exists" %}
-        <div class="alert alert-danger">User with this login already exists</div>
-    {%endif%}
     <div class="container">
         <h1>Регистрация</h1>
 
@@ -24,6 +19,8 @@
                 <label>Email</label>
                 <input class="form-control" type="email" name="email" required>
 
+                <label>Пароль</label>
+                <input class="form-control" type="text" name="password" required>
 
                 <label>Любимые жанры книг (указывать через ;)</label>
                 <input class="form-control" type="text" name="f_genres">
