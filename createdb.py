@@ -32,7 +32,9 @@ CREATE TABLE books (
            book_title TEXT, 
            book_genres TEXT,
            creatorID INTEGER,
-           FOREIGN KEY (creatorID) REFERENCES users(userID) 
+           email TEXT,
+           FOREIGN KEY (creatorID) REFERENCES users(userID)
+           FOREIGN KEY (email) REFERENCES users(email)  
 )
 ''')
 conn.commit()
@@ -98,6 +100,7 @@ users = [
 
 books = [
       {
+        'email': 'ff@hk',
         'book_title': 'Zero',
         'book_author': 'None',
         'book_genres': 'Roman',
@@ -117,11 +120,11 @@ for user in users:
     conn.commit()
 
 
-for user in books:
+for book in books:
     c.execute("INSERT INTO books "
-              "(book_title, book_author, book_genres, book_status) "
+              "(email, book_title, book_author, book_genres, book_status) "
               "VALUES "
-              "('{book_title}', '{book_author}', '{book_genres}','{book_status}')".format(**user))
+              "('{email}','{book_title}', '{book_author}', '{book_genres}','{book_status}')".format(**book))
 
     conn.commit()
 

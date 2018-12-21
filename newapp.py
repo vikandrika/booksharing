@@ -24,10 +24,13 @@ def hello_world():
     c.execute("SELECT * FROM users")
     users = list(c.fetchall())
 
+    c.execute("SELECT * FROM books")
+    books = list(c.fetchall())
+
     # Close connection
     conn.close()
     # Return resulting HTML
-    return render_template('page1.html', users=users)
+    return render_template('page1.html', users=users, books=books)
 
 @app.route('/user/<email>/')
 def user_page(email):
@@ -82,6 +85,7 @@ def add_user():
 
         # save to database
         conn = sqlite3.connect('app.db')
+
         c = conn.cursor()
 
         c.execute("SELECT * FROM users where email='%s'" % user['email'])
@@ -112,27 +116,34 @@ def singin():
     return render_template('sing_in.html')
 
 
-@app.route('/sing_in', methods=['GET','POST'])
+@app.route('/sing_in', methods=['GET', 'POST'])
 def sing_in():
 
-    if request.method == 'GET':
-
-        user ={}
+    if request.method == 'POST':
+        # add new user data
+        user = {}
         user['email'] = request.form.get('email')
         user['password'] = request.form.get('password')
 
+        # save to database
         conn = sqlite3.connect('app.db')
+
         c = conn.cursor()
-        conn.row_factory = dict_factory
 
         c.execute("SELECT * FROM users where email='%s'" % user['email'])
-
         if c.fetchone():
-            return redirect('/user/%s/' % user['email'])
-        conn.commit()
-        conn.close()
+            error_message = "user_exists"
+
+        else:
+
+            conn.close()
+        return redirect('/user/%s/' % user['email'])
 
 
+    return render_template(
+        "page1.html"
+
+    )
 
 @app.route('/add_book', methods=['GET', 'POST'])
 def add_book():
@@ -142,40 +153,53 @@ def add_book():
 
     if request.method == 'POST':
         # add new user data
-        user = {}
-        user['book_title'] = request.form.get('book_title')
-        user['book_author'] = request.form.get('book_author')
-        user['book_genres'] = request.form.get('book_genres')
-        user['book_status'] = request.form.get('book_status')
+        book = {}
+        book['book_title'] = request.form.get('book_title')
+        book['book_author'] = request.form.get('book_author')
+        book['book_genres'] = request.form.get('book_genres')
+        book['book_status'] = request.form.get('book_status')
+        book['email'] = request.form.get('email')
 
         # save to database
         conn = sqlite3.connect('app.db')
         c = conn.cursor()
 
-        c.execute("SELECT * FROM books where book_title='%s'" % user['book_title'])
+        c.execute("SELECT * FROM books where email='%s'" % book['email'])
         if c.fetchone():
             error_message = "book_exists"
         else:
-            c.execute("INSERT INTO users "
-                      "(full_name, email, password, f_genres, f_authors) "
+            c.execute("INSERT INTO books "
+                      "(email,book_title, book_author, book_genres, book_status) "
                       "VALUES "
-                      "('{full_name}', '{email}', '{password}', '{f_genres}','{f_authors}')"
-                      "".format(**user))
+                      "('{email}','{book_title}', '{book_author}', '{book_genres}','{book_status}')"
+                      "".format(**book))
             conn.commit()
-            user_created = True
+            book_created = True
         conn.close()
-        return redirect('/user/%s/' % user['email'])
+        return redirect('/book/%s/' % book['email'])
 
 
     return render_template(
-        "add_user.html",
-        user_created=user_created,
+        "add_book.html",
+        book_created=book_created,
         error_message=error_message
 
     )
 
+@app.route('/book/<email>/')
+def book_page(email):
+    conn = sqlite3.connect('app.db')
+    conn.row_factory = dict_factory
+    c = conn.cursor()
+
+    # Handler logic here
+    c.execute("SELECT * FROM books WHERE email='%s'" % email)
+    book_data = c.fetchone()
 
 
+    # Close connection
+    conn.close()
+    return render_template("book_page.html", book=book_data)
 
 
 
