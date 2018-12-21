@@ -35,12 +35,12 @@
                                     <div class="col-md-12 col-sm-12 user-detail-section2 pull-left">
                                     <div class="border"></div>
                                         <p>ЛЮБИМЫЙ ПИСАТЕЛЬ</p>
-                                        <h3> {{user.f_authors}} </h3>
+                                        <h3>  </h3>
                                     </div>
                                     <div class="col-md-12 col-sm-12 user-detail-section2 pull-right">
                                         <div class="border"></div>
                                         <p>ЛЮБИМЫЕ ЖАНРЫ</p>
-                                        <h4>{{user.f_genres}}</h4>
+                                        <h4></h4>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                 <div class="col-md-12 profile-header">
                                     <div class="row">
                                         <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
-                                            <h1>{{user.full_name}}</h1>
+                                            <h1>{{book.email}}</h1>
                                         </div>
                                         <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-left">
                                             <button class="btn btn-info req-btn pull-left"> ОБМЕН КНИГАМИ</button>
@@ -65,15 +65,13 @@
                                                     <a class="p-2 text-dark" href="#">Инфо</a>
                                                 </div>
                                                 <div class="col-md-3 col-sm-3 profile-tag">
-                                                    <a class="p-2 text-dark" href="#">Добавить книгу</a>
+                                                    <a class="p-2 text-dark" href="/add_book">Добавить книгу</a>
                                                 </div>
-                                                <div class="col-md-3 col-sm-3 profile-tag">
-                                                 <a class="p-2 text-dark" href="#">Рейтинг</a>
-                                                </div>
+
 
                                             </div>
                                             <img  width="100%" src="https://i1.wampi.ru/2018/12/18/image505.jpg" class="img-fluid col-md-9 col-sm-4 col-xs-10 pull-right" alt="Responsive image">
-                                            <h1>{{books.book_title}}</h1>
+                                            <h1>{{book.book_title}}</h1>
                                             <div>
 
                                             </div>

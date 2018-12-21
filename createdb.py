@@ -41,25 +41,23 @@ conn.commit()
 
 
 
-c.execute ('''
-CREATE TABLE exchange (
-          exchangeID INTEGER PRIMARY KEY AUTOINCREMENT,
-          user1 INTEGER,
-          user2 INTEGER,
-          bookU1 INTEGER,
-          bookU2 INTEGER,
-          date INTEGER,
-          time INTEGER,
-          exchange_type TEXT,
-          exchange_period INTEGER, 
-          exchange_conformation NULL,
-          FOREIGN KEY (user1) REFERENCES users(userID),
-          FOREIGN KEY (bookU1) REFERENCES books(bookID),
-          FOREIGN KEY (user2) REFERENCES users(userID),
-          FOREIGN KEY (bookU2) REFERENCES books(bookID)    
-)
+c.execute (''' 
+CREATE TABLE exchange ( 
+exchangeID INTEGER PRIMARY KEY AUTOINCREMENT, 
+user1 INTEGER, 
+user2 INTEGER, 
+bookU1 INTEGER, 
+bookU2 INTEGER, 
+date_of_exchange INTEGER, 
+exchange_conformation NULL, 
+FOREIGN KEY (user1) REFERENCES users(userID), 
+FOREIGN KEY (bookU1) REFERENCES books(bookID), 
+FOREIGN KEY (user2) REFERENCES users(userID), 
+FOREIGN KEY (bookU2) REFERENCES books(bookID) 
+) 
 ''')
 conn.commit()
+
 
 
 
@@ -94,19 +92,27 @@ users = [
         'owned_books': 'book184637',
         'time_from_registration': 43456747,
         'number_of_exchanges': 8,
-        'rating': 5
-    }
-]
-
-books = [
-      {
-        'email': 'ff@hk',
+        'rating': 5,
         'book_title': 'Zero',
         'book_author': 'None',
         'book_genres': 'Roman',
         'book_status': 'New'
-    }
+        }
 ]
+
+books = [
+      {
+        'email': 'dfsdgfsfg@gmail.com',
+        'book_title': 'Zero',
+        'book_author': 'None',
+        'book_genres': 'Roman',
+        'book_status': 'New'
+        }
+]
+
+
+
+
 
 
 

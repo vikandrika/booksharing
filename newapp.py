@@ -164,17 +164,15 @@ def add_book():
         conn = sqlite3.connect('app.db')
         c = conn.cursor()
 
-        c.execute("SELECT * FROM books where email='%s'" % book['email'])
+        c.execute("SELECT * FROM users where email='%s'" % book['email'])
         if c.fetchone():
-            error_message = "book_exists"
-        else:
             c.execute("INSERT INTO books "
                       "(email,book_title, book_author, book_genres, book_status) "
                       "VALUES "
                       "('{email}','{book_title}', '{book_author}', '{book_genres}','{book_status}')"
                       "".format(**book))
+
             conn.commit()
-            book_created = True
         conn.close()
         return redirect('/book/%s/' % book['email'])
 
