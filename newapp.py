@@ -51,6 +51,24 @@ def user_page(email):
     return render_template("user_page.html", user=user_data)
 
 
+@app.route('/userid/<userid>/')
+def user_page_new(userid):
+    conn = sqlite3.connect('app.db')
+    conn.row_factory = dict_factory
+    c = conn.cursor()
+
+    # Handler logic here
+    c.execute("SELECT * FROM users WHERE userID='%s'" % userid)
+    user_data = c.fetchone()
+
+    #c.execute("SELECT * FROM exchange WHERE user2='%s'" % user2)
+    #user_data = c.fetchone()
+
+    # Close connection
+    conn.close()
+    return render_template("user_page_new.html", user=user_data)
+
+
 @app.route('/search')
 def search_for_person():
     q = request.args.get('query')

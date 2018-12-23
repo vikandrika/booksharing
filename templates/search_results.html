@@ -12,6 +12,7 @@
                 <p> Пользователь: {{user.full_name}} </p>
                 <p> Любимые категории: {{user.f_genres}} </p>
                 <p> Авторы: {{user.f_authors}} </p>
+                <div><a href="/userid/{{ user.userID }}" class="btn btn-outline-primary">Перейти</a></div>
             </div>
         </div>
         {% else %}
@@ -25,6 +26,7 @@
                 <p> Название: <a href="/bookid/{{ book.bookID }}"> {{book.book_title}} </a> </p>
                 <p> Жанр: {{book.book_genres}} </p>
                 <p> Автор: {{book.book_author}} </p>
+                <div><a href="/bookid/{{ book.bookID }}" class="btn btn-outline-primary">Перейти</a></div>
             </div>
         </div>
         {% else %}

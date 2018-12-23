@@ -1,0 +1,76 @@
+{% extends "basic.html" %}
+{% block title %}User Page - {{user.full_name}}{% endblock %}
+{% block body %}
+    {% if not user %}
+        <div class="alert alert-warning">User not found!</div>
+    {% else %}
+
+            <div class="container main-section">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 image-section ">
+                        <img src="https://www.yourerc.com/img/employment-law.jpg"   width="100%">
+                    </div>
+                    <div class="row user-left-part">
+                        <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
+                            <div class="row ">
+                                <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
+                                    <img src="http://nicesnippets.com/demo/1499344631_malecostume.png">
+                                </div>
+
+                                <div class="row user-detail-row">
+                                    <div class="col-md-12 col-sm-12 user-detail-section2 pull-left">
+                                    <div class="border"></div>
+                                        <p>ЛЮБИМЫЙ ПИСАТЕЛЬ</p>
+                                        <h3> {{user.f_authors}} </h3>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 user-detail-section2 pull-right">
+                                        <div class="border"></div>
+                                        <p>ЛЮБИМЫЕ ЖАНРЫ</p>
+                                        <h4>{{user.f_genres}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
+                            <div class="row profile-right-section-row">
+                                <div class="col-md-12 profile-header">
+                                    <div class="row">
+                                        <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
+                                            <h1>{{user.full_name}}</h1>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-left">
+                                            <button class="btn btn-info req-btn pull-left"> ОБМЕН КНИГАМИ</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-8  profile-tag-section text-center">
+                                            <div class="row">
+                                                <div class="col-md-3 col-sm-3 profile-tag">
+                                                    <a class="p-2 text-dark" href="#">Инфо</a>
+                                                </div>
+                                                <div class="col-md-3 col-sm-3 profile-tag">
+                                                    <a class="p-2 text-dark" href="/add_book">Добавить книгу</a>
+                                                </div>
+                                                <div class="col-md-3 col-sm-3 profile-tag">
+                                                 <a class="p-2 text-dark" href="#">Рейтинг</a>
+                                                </div>
+
+                                            </div>
+                                            <img  width="100%" src="https://i1.wampi.ru/2018/12/18/image505.jpg" class="img-fluid col-md-9 col-sm-4 col-xs-10 pull-right" alt="Responsive image">
+                                            <h1>{{user.book_title}}</h1>
+                                            <div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    {% endif %}
+{% endblock %}
