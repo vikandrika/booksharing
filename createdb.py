@@ -42,18 +42,18 @@ conn.commit()
 
 
 c.execute (''' 
-CREATE TABLE exchange ( 
-exchangeID INTEGER PRIMARY KEY AUTOINCREMENT, 
-user1 INTEGER, 
-user2 INTEGER, 
-bookU1 INTEGER, 
-bookU2 INTEGER, 
-date_of_exchange INTEGER, 
-exchange_conformation NULL, 
-FOREIGN KEY (user1) REFERENCES users(userID), 
-FOREIGN KEY (bookU1) REFERENCES books(bookID), 
-FOREIGN KEY (user2) REFERENCES users(userID), 
-FOREIGN KEY (bookU2) REFERENCES books(bookID) 
+CREATE TABLE exchanges ( 
+    exchangeID INTEGER PRIMARY KEY AUTOINCREMENT, 
+    user1 INTEGER, 
+    user2 INTEGER, 
+    bookU1 INTEGER, 
+    bookU2 INTEGER, 
+    date_of_exchange INTEGER, 
+    exchange_conformation NULL, 
+    FOREIGN KEY (user1) REFERENCES users(userID), 
+    FOREIGN KEY (bookU1) REFERENCES books(bookID), 
+    FOREIGN KEY (user2) REFERENCES users(userID), 
+    FOREIGN KEY (bookU2) REFERENCES books(bookID) 
 ) 
 ''')
 conn.commit()
@@ -111,9 +111,15 @@ books = [
 ]
 
 
-
-
-
+exchanges = [
+      {
+        'user1': '5',
+        'user2': '6',
+        'bookU1': '4',
+        'bookU2': '3',
+        'date_of_exchange': '23.12.2018'
+        }
+]
 
 
 
@@ -133,6 +139,16 @@ for book in books:
               "('{email}','{book_title}', '{book_author}', '{book_genres}','{book_status}')".format(**book))
 
     conn.commit()
+
+
+for exchange in exchanges:
+    c.execute("INSERT INTO exchanges "
+              "(user1, user2, bookU1, bookU2, date_of_exchange)"
+              "VALUES "
+              "('{user1}','{user2}', '{bookU1}', '{bookU2}','{date_of_exchange}')".format(**exchange))
+
+    conn.commit()
+
 
 
 conn.close()

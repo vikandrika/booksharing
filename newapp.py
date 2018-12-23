@@ -136,6 +136,10 @@ def add_user():
 def singin():
     return render_template('sing_in.html')
 
+@app.route('/ex')
+def ex():
+    return render_template('exchange.html')
+
 
 @app.route('/sing_in', methods=['GET', 'POST'])
 def sing_in():
@@ -203,6 +207,36 @@ def add_book():
         error_message=error_message
 
     )
+
+
+
+@app.route('/add_exchange', methods=['GET', 'POST'])
+def add_exchange():
+
+    if request.method == 'POST':
+        exchange = {}
+        exchange['user1'] = request.form.get('user1')
+        exchange['user2'] = request.form.get('user2')
+        exchange['bookU1'] = request.form.get('bookU1')
+        exchange['bookU2'] = request.form.get('bookU2')
+        exchange['date_of_exchange'] = request.form.get('date_of_exchange')
+
+        # save to database
+        conn = sqlite3.connect('app.db')
+        c = conn.cursor()
+        c.execute("SELECT * FROM users where userID='%s'" % exchange['user2'])
+        if c.fetchone():
+            c.execute("INSERT INTO exchanges " 
+                      "(user1, user2, bookU1, bookU2, date_of_exchange) " 
+                      "VALUES " 
+                      "('{user1}', '{user2}', '{bookU1}', '{bookU2}','{date_of_exchange}')"
+                      "".format(**exchange))
+        conn.commit()
+        conn.close()
+        return redirect('/userid/%s/' % exchange['user2'])
+
+    return render_template(
+        "exchange.html",)
 
 
 @app.route('/book/<email>/')
