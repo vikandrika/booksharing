@@ -7,8 +7,24 @@
 </head>
 
 <body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+  <h4 class="my-0 mr-md-auto font-weight-normal">Book Sharing</h4>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" href="#">О проекте</a>
+  </nav>
+    </div>
+
+    <div class="view" style="background-image: url('https://epidemicanswers.org/wp-content/uploads/2017/08/opened-book-on-bright-background.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+
+
     <div class="container">
-        <h1>Регистрация</h1>
+        <h1>Вход в систему</h1>
+
+
+
+        <div class="col-md-12 col-sm-12 col-xs-12 user-image-section">
+        <img src="http://nicesnippets.com/demo/businessman.png">
+        </div>
 
         <form method="post" action="/sing_in">
             <div class="form-group">
@@ -22,13 +38,16 @@
 
 
             </div>
-            <button type="submit" class="btn btn-success">Add User</button>
+            <button type="submit" class="btn btn-success">Войти в личный кабинет</button>
         </form>
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
         <p> Не зарегистрированы? <a class="btn btn-outline-primary" href="/add_user">Создайте аккаунт</a></p>
     </div>
+    <footer class="container">
+    <p>&copy; 2018-2019 Read Good, Inc. &middot; </p>
+  </footer>
 
 </body>
 </html>

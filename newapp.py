@@ -140,6 +140,11 @@ def singin():
 def ex():
     return render_template('exchange.html')
 
+@app.route('/ab')
+def ab():
+    return render_template('about.html')
+
+
 
 @app.route('/sing_in', methods=['GET', 'POST'])
 def sing_in():
