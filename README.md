@@ -7,6 +7,7 @@ _Резвухина Виктория,
 Данилова Елизавета_
 ***
 Project link: https://github.com/vikandrika/booksharing
+
 Дизайн: 
 ***
 # Список элементов bootstrap:
