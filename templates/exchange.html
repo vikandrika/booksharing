@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootst.." integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<title>Add new exchange</title>
+</head>
+<body>
+<div class="container">
+<h1>Предложить обмен</h1>
+
+<form method="post" action="/add_exchange">
+<div class="form-group">
+
+
+<label>Ваш ID</label>
+<input class="form-control" type="integer" name="user1" required>
+
+<label>ID пользователя, с которым хотите совершить обмен</label>
+<input class="form-control" type="integer" name="user2" required>
+
+<label>ID книги, которую вы хотите обменять</label>
+<input class="form-control" type="integer" name="bookU1" required>
+
+<label>ID книги, которые вы хотите получить</label>
+<input class="form-control" type="integer" name="bookU2" required>
+
+<label>Дата подачи предложения</label>
+<input class="form-control" type="integer" name="date_of_exchange">
+
+
+</div>
+<button type="submit" class="btn btn-success">Отправить предложение</button>
+</form>
+</div>
+</body>
+</html>
