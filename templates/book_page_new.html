@@ -1,9 +1,10 @@
 {% extends "basic.html" %}
-{% block title %}Book{% endblock %}
+{% block title %}Book - {{book.book_title}}{% endblock %}
 {% block body %}
     {% if not book %}
     <div class="alert alert-warning">Book not found!</div>
     {% else %}
+        <h3>Book info</h3>
         <div class="card">
             <div class="card-body">
                 <p> Название: {{book.book_title}} </p>
