@@ -3,7 +3,7 @@
     <title> Search: {{q}} </title>
 {% block body %}
     <div class="container">
-        <h1><span class="badge badge-secondary"> You searched for   </span> {{q}} </h1>
+        <h1><span class="badge badge-secondary"> Результаты поиска:  </span> {{q}} </h1>
         <br>
         <h2>Пользователи:</h2>
         {% for user in users %}
@@ -24,6 +24,7 @@
         <div class="card">
             <div class="card-body">
                 <p> Название: <a href="/bookid/{{ book.bookID }}"> {{book.book_title}} </a> </p>
+                <p> ID книги : {{book.bookID}} </p>
                 <p> Жанр: {{book.book_genres}} </p>
                 <p> Автор: {{book.book_author}} </p>
                 <p> Email пользователя: {{book.email}} </p>
