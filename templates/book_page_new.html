@@ -1,0 +1,15 @@
+{% extends "basic.html" %}
+{% block title %}Book{% endblock %}
+{% block body %}
+    {% if not book %}
+    <div class="alert alert-warning">Book not found!</div>
+    {% else %}
+        <div class="card">
+            <div class="card-body">
+                <p> Название: {{book.book_title}} </p>
+                <p> Жанр: {{book.book_genres}} </p>
+                <p> Автор: {{book.book_author}} </p>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

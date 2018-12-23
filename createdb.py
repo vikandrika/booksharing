@@ -33,7 +33,7 @@ CREATE TABLE books (
            book_genres TEXT,
            creatorID INTEGER,
            email TEXT,
-           FOREIGN KEY (creatorID) REFERENCES users(userID)
+           FOREIGN KEY (creatorID) REFERENCES users(userID),
            FOREIGN KEY (email) REFERENCES users(email)  
 )
 ''')

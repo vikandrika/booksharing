@@ -32,6 +32,7 @@ def hello_world():
     # Return resulting HTML
     return render_template('page1.html', users=users, books=books)
 
+
 @app.route('/user/<email>/')
 def user_page(email):
     conn = sqlite3.connect('app.db')
@@ -61,11 +62,14 @@ def search_for_person():
     c.execute("SELECT * FROM users WHERE full_name LIKE '%{q}%' OR email LIKE '%{q}%'"
               "".format(q=q))
     users = list(c.fetchall())
+    c.execute("SELECT DISTINCT * FROM books WHERE book_author LIKE '%{q}%' " \
+                                              "OR book_title LIKE '%{q}%' " \
+                                              "OR book_genres LIKE '%{q}%'" \
+              "".format(q=q))
+    books = list(c.fetchall())
 
     conn.close()
-    return render_template('search_results.html', q=q, users=users)
-
-
+    return render_template('search_results.html', q=q, users=users, books=books)
 
 
 @app.route('/add_user', methods=['GET', 'POST'])
@@ -101,7 +105,6 @@ def add_user():
             user_created = True
         conn.close()
         return redirect('/user/%s/' % user['email'])
-
 
     return render_template(
         "add_user.html",
@@ -139,11 +142,11 @@ def sing_in():
             conn.close()
         return redirect('/user/%s/' % user['email'])
 
-
     return render_template(
         "page1.html"
 
     )
+
 
 @app.route('/add_book', methods=['GET', 'POST'])
 def add_book():
@@ -176,13 +179,13 @@ def add_book():
         conn.close()
         return redirect('/book/%s/' % book['email'])
 
-
     return render_template(
         "add_book.html",
         book_created=book_created,
         error_message=error_message
 
     )
+
 
 @app.route('/book/<email>/')
 def book_page(email):
@@ -200,7 +203,21 @@ def book_page(email):
     return render_template("book_page.html", book=book_data)
 
 
+@app.route('/bookid/<bookid>/')
+def book_page_new(bookid):
+    conn = sqlite3.connect('app.db')
+    conn.row_factory = dict_factory
+    c = conn.cursor()
 
-app.run()
+    # Handler logic here
+    c.execute("SELECT * FROM books WHERE bookID='{id}'".format(id=bookid))
+    book_data = c.fetchone()
 
 
+    # Close connection
+    conn.close()
+    return render_template("book_page_new.html", book=book_data)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
