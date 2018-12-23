@@ -1,26 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+{% extends "basic.html" %}
+{% block title %}Search: {{q}}{% endblock %}
     <title> Search: {{q}} </title>
-</head>
-<body>
-     <div class="container">
-        <h1> <span class="badge badge-secondary"> You searched for   </span> {{q}} </h1>
+{% block body %}
+    <div class="container">
+        <h1><span class="badge badge-secondary"> You searched for   </span> {{q}} </h1>
         <br>
+        <h2>Пользователи:</h2>
         {% for user in users %}
-            <div class="card">
-              <div class="card-body">
-                  <p> Пользователь: {{user.full_name}} </p>
-                  <p> Любимые категории: {{user.f_genres}} </p>
-                  <p> Авторы: {{user.f_authors}} </p>
-              </div>
+        <div class="card">
+            <div class="card-body">
+                <p> Пользователь: {{user.full_name}} </p>
+                <p> Любимые категории: {{user.f_genres}} </p>
+                <p> Авторы: {{user.f_authors}} </p>
             </div>
+        </div>
         {% else %}
-            <div class="alert alert-warning">Пользователь не найден!</div>
+        <div class="alert alert-warning">Пользователь не найден!</div>
         {% endfor %}
 
+        <h2>Книги:</h2>
+        {% for book in books %}
+        <div class="card">
+            <div class="card-body">
+                <p> Название: <a href="/bookid/{{ book.bookID }}"> {{book.book_title}} </a> </p>
+                <p> Жанр: {{book.book_genres}} </p>
+                <p> Автор: {{book.book_author}} </p>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-warning">Книги не найдены!</div>
+        {% endfor %}
     </div>
-</body>
-</html>
+{% endblock %}
