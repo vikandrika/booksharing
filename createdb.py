@@ -15,9 +15,6 @@ CREATE TABLE users (
            f_authors TEXT,
            wish_books TEXT,
            owned_books TEXT,
-           time_from_registration INTEGER,
-           number_of_exchanges INTEGER,
-           rating REAL
 )
 ''')
 conn.commit()
@@ -59,40 +56,15 @@ CREATE TABLE exchanges (
 conn.commit()
 
 
-
-
-c.execute ('''
-CREATE TABLE genres (
-          genreID INTEGER PRIMARY KEY AUTOINCREMENT,
-          genre_name TEXT    
-)
-''')
-conn.commit()
-
-c.execute ('''
-CREATE TABLE users_genres (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          user_ID INTEGER,
-          genre_ID INTEGER,
-          FOREIGN KEY (user_ID) REFERENCES users(userID),
-          FOREIGN KEY (genre_ID) REFERENCES genres(genreID)     
-)
-''')
-
-conn.commit()
-
 users = [
       {
         'full_name': 'Pavel_Okopnyi',
         'password': 'fdfdfdgdfg',
         'email': 'dfsdgfsfg@gmail.com',
         'f_genres': 'Ужасы',
-        'f_authors': 'Ghj',
-        'wish_books': 'sdfgdsfgsd',
-        'owned_books': 'book184637',
-        'time_from_registration': 43456747,
-        'number_of_exchanges': 8,
-        'rating': 5,
+        'f_authors': '-',
+        'wish_books': '-',
+        'owned_books': '-',
         'book_title': 'Zero',
         'book_author': 'None',
         'book_genres': 'Roman',
