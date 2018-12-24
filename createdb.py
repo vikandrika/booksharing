@@ -58,7 +58,7 @@ conn.commit()
 
 users = [
       {
-        'full_name': 'Pavel_Okopnyi',
+        'full_name': 'Pavel Okopnyi',
         'password': 'fdfdfdgdfg',
         'email': 'dfsdgfsfg@gmail.com',
         'f_genres': 'Ужасы',
