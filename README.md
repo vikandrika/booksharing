@@ -6,9 +6,7 @@ _Резвухина Виктория,
 Тищенко Дмитрий,
 Данилова Елизавета_
 ***
-Project link: https://github.com/vikandrika/booksharing
-
-Дизайн: 
+Project link: https://github.com/vikandrika/booksharing 
 ***
 # Список элементов bootstrap:
 Alerts, containers, footer, navbar, input group, forms, cards, buttons
